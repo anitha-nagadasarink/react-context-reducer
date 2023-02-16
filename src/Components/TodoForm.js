@@ -7,33 +7,38 @@ import {
   InputGroup,
 } from "reactstrap";
 
+
 import { v4 } from "uuid";
 import { TodoContext } from "../context/TodoContext";
+
 import { ADD_TODO } from "../context/action.types";
 
 
+
 const TodoForm = () => {
-  const [todoString, setTodoString] = useState("");
+  const [todoString, setTodoSting] = useState("");
   const { dispatch } = useContext(TodoContext);
+
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (todoString === "") {
-      return alert("Please enter a Todo");
-    }
 
+    if (todoString === "") {
+      return alert("Enter The Todo");
+    }
 
     const todo = {
       todoString,
-      id: v4(),
+      id: v4()
     }
+
     dispatch({
       type: ADD_TODO,
       payload: todo
-    })
+    });
+    setTodoSting("")
+  };
 
-    setTodoString("")
-  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -45,12 +50,11 @@ const TodoForm = () => {
             id="todp"
             placeholder="Your next Todo"
             value={todoString}
-            onChange={e => setTodoString(e.target.value)}
-
+            onChange={e => setTodoSting(e.target.value)}
           />
           <Button
             color="warning"
-          // Todp:" Onclick"
+            className="px-3 py-2"
           >Add
           </Button>
 
